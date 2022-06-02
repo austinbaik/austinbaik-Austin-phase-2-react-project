@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+nav {
+  font: 'Helvetica Neue';
+  font-size: calc(10px + 2vmin);
+  color: white;
+  background-color: #e4002b ;
+}
