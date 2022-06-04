@@ -8,14 +8,17 @@ function App() {
 
   const [imagesAPI, setImagesAPI] = useState([])
 
-  function updateState(data){
+  function updateState(data) {
     setImagesAPI(data)
-  } 
+  }
 
-   return (
-    <div className="App-header">
-      <Nav/>
-      <Images updateState={updateState} imageArray={imagesAPI}/>
+  return (
+    <div>
+      <h1 className='.App-header'>
+        Hello
+      </h1>
+      <Nav />
+      <Images updateState={updateState} imageArray={imagesAPI} />
     </div>
   );
 }

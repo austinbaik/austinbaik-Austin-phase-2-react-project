@@ -1,5 +1,10 @@
 import { useEffect } from "react";
 import React from 'react';
+import Cards from './Cards';
+import InfiniteScroll from "react-infinite-scroll-component";
+import axios from "axios";
+
+
 
 
 // api call to fetch data   
@@ -14,6 +19,7 @@ import React from 'react';
 
 function Images({ updateState, imageArray }) {
 
+
     useEffect(() => {
         fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11&hasImages=true')
             .then(response => response.json())
@@ -23,117 +29,34 @@ function Images({ updateState, imageArray }) {
                 updateState(response.objectIDs)
             })
     },
-    
+
         []
     );
 
-// function handleAPIResp(data) {
-//      updateState(data)
-// };
-    // 20220602193013
+
+    // axios.get('https://collectionapi.metmuseum.org/public/collection/v1/objects/')
+
+    const arrayLength = imageArray.length;  //count: 2618 
+    const [remainingImages, setRemainingImages] = setState(0);
+    const [hasMore, setHasMore] = setState(true);
+    const [imageData, setImageData] = setState([]);
+
     // https://collectionapi.metmuseum.org/public/collection/v1/objects/436173
 
+    function fetchMoreData(){
+        // let i = remainingImages, for ( i = [], < 10)
+        // let imageID = imageArray[i]
 
-    // DATASTRUCTURE:
-    // {
-    //     "objectID": 436173,
-    //     "isHighlight": true,
-    //     "accessionNumber": "29.100.35",
-    //     "accessionYear": "1929",
-    //     "isPublicDomain": true,
-    //     "primaryImage": "https://images.metmuseum.org/CRDImages/ep/original/DP253480.jpg",
-    //     "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ep/web-large/DP253480.jpg",
-    //     "additionalImages": [
+        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${imageID}`)
+            .then(response => response.json())
+            .then(response => {
+                console.log('response', response)
+                console.log('response.objectIDs', response.objectIDs);
+                setImageData((response.objectIDs)) //concat 
+            }) 
 
-    //     ],
-    //     "constituents": [
-    //       {
-    //         "constituentID": 161821,
-    //         "role": "Artist",
-    //         "name": "Edgar Degas",
-    //         "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500115194",
-    //         "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q46373",
-    //         "gender": ""
-    //       }
-    //     ],
-    //     "department": "European Paintings",
-    //     "objectName": "Drawing",
-    //     "title": "Woman Having Her Hair Combed",
-    //     "culture": "",
-    //     "period": "",
-    //     "dynasty": "",
-    //     "reign": "",
-    //     "portfolio": "",
-    //     "artistRole": "Artist",
-    //     "artistPrefix": "",
-    //     "artistDisplayName": "Edgar Degas",
-    //     "artistDisplayBio": "French, Paris 1834–1917 Paris",
-    //     "artistSuffix": "",
-    //     "artistAlphaSort": "Degas, Edgar",
-    //     "artistNationality": "French",
-    //     "artistBeginDate": "1834",
-    //     "artistEndDate": "1917",
-    //     "artistGender": "",
-    //     "artistWikidata_URL": "https://www.wikidata.org/wiki/Q46373",
-    //     "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500115194",
-    //     "objectDate": "ca. 1886–88",
-    //     "objectBeginDate": 1886,
-    //     "objectEndDate": 1888,
-    //     "medium": "Pastel on light green wove paper, now discolored to warm gray, affixed to original pulpboard mount",
-    //     "dimensions": "29 1/8 x 23 7/8 in. (74 x 60.6 cm)",
-    //     "measurements": [
-    //       {
-    //         "elementName": "Overall",
-    //         "elementDescription": null,
-    //         "elementMeasurements": {
-    //           "Height": 74,
-    //           "Width": 60.6
-    //         }
-    //       }
-    //     ],
-    //     "creditLine": "H. O. Havemeyer Collection, Bequest of Mrs. H. O. Havemeyer, 1929",
-    //     "geographyType": "",
-    //     "city": "",
-    //     "state": "",
-    //     "county": "",
-    //     "country": "",
-    //     "region": "",
-    //     "subregion": "",
-    //     "locale": "",
-    //     "locus": "",
-    //     "excavation": "",
-    //     "river": "",
-    //     "classification": "Drawings",
-    //     "rightsAndReproduction": "",
-    //     "linkResource": "",
-    //     "metadataDate": "2022-06-02T12:28:57.13Z",
-    //     "repository": "Metropolitan Museum of Art, New York, NY",
-    //     "objectURL": "https://www.metmuseum.org/art/collection/search/436173",
-    //     "tags": [
-    //       {
-    //         "term": "Women",
-    //         "AAT_URL": "http://vocab.getty.edu/page/aat/300025943",
-    //         "Wikidata_URL": "https://www.wikidata.org/wiki/Q467"
-    //       },
-    //       {
-    //         "term": "Female Nudes",
-    //         "AAT_URL": "http://vocab.getty.edu/page/aat/300189568",
-    //         "Wikidata_URL": "https://www.wikidata.org/wiki/Q40446"
-    //       }
-    //     ],
-    //     "objectWikidata_URL": "https://www.wikidata.org/wiki/Q19912688",
-    //     "isTimelineWork": false,
-    //     "GalleryNumber": "817"
-    //   }
-
-    // DATASTRUCTURE:
-    // {
-    //     "objectID": 436173,
-    //     "isHighlight": true,
-    //     "accessionNumber": "29.100.35",
-    //     "accessionYear": "1929",
-    //     "isPublicDomain": true,
-    //     "primaryImage": "https://images.metmuseum.org/CRDImages/ep/original/DP253480.jpg",
+            remainingImages < arrayLength ? setHasMore(true) : setHasMore(false)
+    }
 
     // first api call -> loads to state -> begin rendering the cards (which make api calls ad hoc?)
     // db,json < what goes here?  
@@ -144,25 +67,28 @@ function Images({ updateState, imageArray }) {
     //         // https://collectionapi.metmuseum.org/public/collection/v1/objects/{number}
     //         fetch ()
     //     }
-    
-    // console.log('imageArray: ', imageArray);
-    const arrayList = imageArray.map((item) => {
-        return (
-            <li>{item}</li>
-        )
-    })
+
+
 
     return (
-        //we will be returning cards 
-        //each card has a favorite button (star)
-        //each card has a comment form 
-        //comment writes to db.json in "POST"
-        //
+
         <div>
-            Hello
-            <ul>
-                {arrayList}
-            </ul>
+            <div style="height:700px;overflow:auto;">
+            </div>
+
+            <InfiniteScroll
+                dataLength={remainingImages}
+                next={fetchMoreData}
+                hasMore={hasMore}
+                loader={<h4>Loading...</h4>}
+
+            >
+                
+
+                <Cards />
+            </InfiniteScroll>
+
+
         </div>
     )
 };
