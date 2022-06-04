@@ -6,18 +6,16 @@ import Images from './Images.js'
 
 function App() {
 
-  const [imagesAPI, setImagesAPI] = useState()
+  const [imagesAPI, setImagesAPI] = useState([])
 
-  function handleAPIResp(data){
-    console.log("data", data)
+  function updateState(data){
     setImagesAPI(data)
   } 
-  console.log("images", imagesAPI)
 
    return (
     <div className="App-header">
       <Nav/>
-      <Images handleAPIResp={handleAPIResp} imageArray={imagesAPI}/>
+      <Images updateState={updateState} imageArray={imagesAPI}/>
     </div>
   );
 }
