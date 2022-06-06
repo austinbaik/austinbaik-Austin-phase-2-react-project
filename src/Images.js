@@ -1,10 +1,8 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import React from 'react';
 import Cards from './Cards';
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
-
-
 
 
 // api call to fetch data   
@@ -15,12 +13,17 @@ import axios from "axios";
 //we will need to use state to accomplish this 
 //useEffect()
 // render the cards that way 
+// https://betterprogramming.pub/async-infinite-scroll-in-react-js-71a6f1210c75
 
 
 function Images({ updateState, imageArray }) {
+    const arrayLength = imageArray.length;  //count: 2618 
+    const [remainingImageIDs, setRemainingImageIDs] = useState(0);
+    const [hasMore, setHasMore] = useState(true);
+    const [imageData, setImageData] = useState([]);
 
 
-    useEffect(() => {
+    useEffect(() => { //initial API call that loads the collection of object IDs
         fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11&hasImages=true')
             .then(response => response.json())
             .then(response => {
@@ -35,61 +38,74 @@ function Images({ updateState, imageArray }) {
 
 
     // axios.get('https://collectionapi.metmuseum.org/public/collection/v1/objects/')
-
-    const arrayLength = imageArray.length;  //count: 2618 
-    const [remainingImages, setRemainingImages] = setState(0);
-    const [hasMore, setHasMore] = setState(true);
-    const [imageData, setImageData] = setState([]);
-
     // https://collectionapi.metmuseum.org/public/collection/v1/objects/436173
 
-    function fetchMoreData(){
-        // let i = remainingImages, for ( i = [], < 10)
-        // let imageID = imageArray[i]
+    async function fetchMoreData(e) {
+        e.preventDefault()
+        let i = 0;
+        let tempArray = []
+        let newRemainingIDS = remainingImageIDs
+        do {
+            let ObjectID = newRemainingIDS + i
 
-        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${imageID}`)
-            .then(response => response.json())
-            .then(response => {
-                console.log('response', response)
-                console.log('response.objectIDs', response.objectIDs);
-                setImageData((response.objectIDs)) //concat 
-            }) 
+            let IDForArray = imageArray[ObjectID]
+            await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${IDForArray}`)
+                .then(response => response.json())
+                .then(response => {
+                    console.log('response', response)
+                    tempArray.push(response)
+                }),
+                i += 1;
+        } while (i < 9);
 
-            remainingImages < arrayLength ? setHasMore(true) : setHasMore(false)
+        setRemainingImageIDs(newRemainingIDS + 9)
+        setImageData([...imageData, ...tempArray]) //concat
+        //.push is destructive && must use spread array both times for objects inside to be one array
+        setHasMore(arrayLength-(newRemainingIDS + 9) > 0) //gives true or false by default 
+
+
     }
 
-    // first api call -> loads to state -> begin rendering the cards (which make api calls ad hoc?)
-    // db,json < what goes here?  
 
-    // at end of page get next 9 images?
+    console.log("imageData", imageData)
 
-    // function fetchImageObjects({imageArray}){
-    //         // https://collectionapi.metmuseum.org/public/collection/v1/objects/{number}
-    //         fetch ()
-    //     }
+    // newRemainingIDS < arrayLength ? setHasMore(true) : setHasMore(false)
+    // setRemainingImageIDs(newRemainingIDS)
 
-
+    let testing = imageData.map((img) => {
+        return (
+            <div>
+                {img.title}
+            </div>
+        )
+    });
 
     return (
 
-        <div>
-            <div style="height:700px;overflow:auto;">
-            </div>
+        <>
+            <button onClick={fetchMoreData}>
+                Call API
+            </button>
+            <ul>
+                {testing}
+            </ul>
+            <Cards />
+        </>
 
-            <InfiniteScroll
-                dataLength={remainingImages}
-                next={fetchMoreData}
-                hasMore={hasMore}
-                loader={<h4>Loading...</h4>}
+        // <div>
+        //     <div style="height:700px;overflow:auto;">
+        //     </div>
 
-            >
-                
+        //     <InfiniteScroll
+        //         dataLength={imageData.length}
+        //         next={fetchMoreData}
+        //         hasMore={hasMore}
+        //         loader={<h4>Loading...</h4>}
 
-                <Cards />
-            </InfiniteScroll>
-
-
-        </div>
+        //     >
+        //         <Cards />
+        //     </InfiniteScroll>
+        // </div>
     )
 };
 
