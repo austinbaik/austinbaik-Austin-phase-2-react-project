@@ -22,9 +22,11 @@ function Images({ updateState, imageArray }) {
     const [hasMore, setHasMore] = useState(true);
     const [imageData, setImageData] = useState([]);
 
+    https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=11&hasImages=true&artistOrCulture=true&q=vincent
 
+    // https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11&hasImages=true
     useEffect(() => { //initial API call that loads the collection of object IDs
-        fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11&hasImages=true')
+        fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=11&hasImages=true&artistOrCulture=true&q=vincent')
             .then(response => response.json())
             .then(response => {
                 console.log('response', response)
@@ -35,7 +37,6 @@ function Images({ updateState, imageArray }) {
 
         []
     );
-
 
     // axios.get('https://collectionapi.metmuseum.org/public/collection/v1/objects/')
     // https://collectionapi.metmuseum.org/public/collection/v1/objects/436173
@@ -61,9 +62,7 @@ function Images({ updateState, imageArray }) {
         setRemainingImageIDs(newRemainingIDS + 9)
         setImageData([...imageData, ...tempArray]) //concat
         //.push is destructive && must use spread array both times for objects inside to be one array
-        setHasMore(arrayLength-(newRemainingIDS + 9) > 0) //gives true or false by default 
-
-
+        setHasMore(arrayLength - (newRemainingIDS + 9) > 0) //gives true or false by default 
     }
 
 
@@ -72,40 +71,53 @@ function Images({ updateState, imageArray }) {
     // newRemainingIDS < arrayLength ? setHasMore(true) : setHasMore(false)
     // setRemainingImageIDs(newRemainingIDS)
 
-    let testing = imageData.map((img) => {
-        return (
-            <div>
-                {img.title}
-            </div>
-        )
-    });
+    // let testing = imageData.map((img) => {
+    //     return (
+    //         <div>
+    //             {img.title}
+    //         </div>
+    //     )
+    // });
 
     return (
 
         <>
-            <button onClick={fetchMoreData}>
+            {/* <button onClick={fetchMoreData}>
                 Call API
             </button>
-            <ul>
-                {testing}
-            </ul>
-            <Cards />
+
+            <div>
+            <div style="height:700px;overflow:auto;">
+            </div> */}
+
+            <InfiniteScroll
+                dataLength={imageData.length}
+                next={fetchMoreData}
+                hasMore={hasMore}
+                loader={<h4>Loading...</h4>}
+            >
+                <Cards imageData={imageData} />
+            </InfiniteScroll>
+
+
+            {/* {imageData.map((img) => {
+                    return (
+                        <div>
+                            {img.title}
+                        </div>
+                    )
+
+                })} */}
+
+
+            {/* </div> */}
+
+
+
+
+
         </>
 
-        // <div>
-        //     <div style="height:700px;overflow:auto;">
-        //     </div>
-
-        //     <InfiniteScroll
-        //         dataLength={imageData.length}
-        //         next={fetchMoreData}
-        //         hasMore={hasMore}
-        //         loader={<h4>Loading...</h4>}
-
-        //     >
-        //         <Cards />
-        //     </InfiniteScroll>
-        // </div>
     )
 };
 

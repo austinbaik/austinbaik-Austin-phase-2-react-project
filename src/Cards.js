@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-function Cards( {  }) {
+function Cards( { imageData }) {
 
 //we will be returning cards 
         //each card has a favorite button (star)
@@ -10,11 +10,19 @@ function Cards( {  }) {
         //comment writes to db.json in "POST"
         //
 
+    let testing = imageData.map((img) => {
+        return (
+            <div>
+                {img.title}
+            </div>
+        )
+    });
 
     return (
 
             <>
                 "Hold This Space"
+
             </>
      
 
