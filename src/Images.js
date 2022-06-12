@@ -3,40 +3,56 @@ import React from 'react';
 import Cards from './Cards';
 
 
-// api call to fetch data   
-//api documentation: https://metmuseum.github.io/#search
-// @api call time 
-// https://metmuseum.github.io/#search
-// use a search api 
-//we will need to use state to accomplish this 
-//useEffect()
-// render the cards that way 
-// https://betterprogramming.pub/async-infinite-scroll-in-react-js-71a6f1210c75
+function Images() {
+    // const arrayLength = imageArray.length;  //count: 2618 
+    // const [remainingImageIDs, setRemainingImageIDs] = useState(0);
+    // const [hasMore, setHasMore] = useState(true);
+    // const [imageData, setImageData] = useState([]);
+    const [objArray, setObjArray] = useState([])
+
+    let objectIds = [436533, 436528, 436529, 436532, 436535, 437984, 436536, 436526, 438722, 436531, 437998, 436525, 436534, 436524, 436530, 437980, 437907, 435661, 435662, 436527, 437150]
+    // https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=11&hasImages=true&artistOrCulture=true&q=vincent
+    const urls = objectIds.map(id => `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+
+    // useEffect(() => { //initial API call that loads the collection of object IDs
 
 
-function Images({ updateState, imageArray }) {
-    const arrayLength = imageArray.length;  //count: 2618 
-    const [remainingImageIDs, setRemainingImageIDs] = useState(0);
-    const [hasMore, setHasMore] = useState(true);
-    const [imageData, setImageData] = useState([]);
+    //     //  fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}')
+    //     //     .then(response => response.json())
+    //     //     .then(response => {
+    //     //         console.log('response', response)
+    //     //         console.log('response.objectIDs', response.objectIDs);
+    //     //         updateState(response.objectIDs)
+    //     //     })
 
-    https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=11&hasImages=true&artistOrCulture=true&q=vincent
 
-    // https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11&hasImages=true
-    useEffect(() => { //initial API call that loads the collection of object IDs
-        fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=11&hasImages=true&artistOrCulture=true&q=vincent')
-            .then(response => response.json())
-            .then(response => {
-                console.log('response', response)
-                console.log('response.objectIDs', response.objectIDs);
-                updateState(response.objectIDs)
-            })
-    },
+    //     // arrayOfObjects = objectIds.map((id) => {
+    //     //     await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+    //     // })
+    //     // .then(resp => response.json)
 
-        []
-    );
 
-    // axios.get('https://collectionapi.metmuseum.org/public/collection/v1/objects/')
+    // }, []
+    // )
+
+
+    useEffect(() => {
+        urls.forEach(u => {
+            console.log("u", u)
+            loadData(u)
+        });
+    }, [])
+
+let objRes = []
+    const loadData = async (u) => {
+        
+        await fetch(`${u}`)
+        .then(response => response.json())
+        .then(data => setObjArray([...objArray, data]))
+    }
+
+
+    console.log('objArray', objArray)
     // https://collectionapi.metmuseum.org/public/collection/v1/objects/436173
 
     // async function fetchMoreData(e) {
@@ -63,42 +79,15 @@ function Images({ updateState, imageArray }) {
     //     setHasMore(arrayLength - (newRemainingIDS + 9) > 0) //gives true or false by default 
     // }
 
-
-    // console.log("imageData", imageData)
-
     // newRemainingIDS < arrayLength ? setHasMore(true) : setHasMore(false)
     // setRemainingImageIDs(newRemainingIDS)
 
-    // let testing = imageData.map((img) => {
-    //     return (
-    //         <div>
-    //             {img.title}
-    //         </div>
-    //     )
-    // });
 
     return (
 
         <>
-         
-      <Cards imageData={imageData} />
 
-      
-            {/* {imageData.map((img) => {
-                    return (
-                        <div>
-                            {img.title}
-                        </div>
-                    )
-
-                })} */}
-
-
-            {/* </div> */}
-
-
-
-
+            <Cards imageData={objArray} />
 
         </>
 

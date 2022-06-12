@@ -10,10 +10,22 @@ function Cards( { imageData }) {
         //comment writes to db.json in "POST"
         //
 
+
+console.log("objArray", imageData)
+
+const handleSubmit = () => {
+    
+ console.log("submitted! (for now)");
+}
+
     let testing = imageData.map((img) => {
         return (
-            <div>
+            <div key={img.objectID}>
                 {img.title}
+                <a href={img.primaryImage}></a> 
+                <form onSubmit={handleSubmit}>
+                    <button>Submit</button>
+                </form>
             </div>
         )
     });
@@ -22,6 +34,7 @@ function Cards( { imageData }) {
 
             <>
                 "Hold This Space"
+                {testing}
 
             </>
      
