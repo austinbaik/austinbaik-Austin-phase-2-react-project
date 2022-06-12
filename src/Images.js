@@ -4,10 +4,6 @@ import Cards from './Cards';
 
 
 function Images() {
-    // const arrayLength = imageArray.length;  //count: 2618 
-    // const [remainingImageIDs, setRemainingImageIDs] = useState(0);
-    // const [hasMore, setHasMore] = useState(true);
-    // const [imageData, setImageData] = useState([]);
     const [objArray, setObjArray] = useState([])
 
     let objectIds = [436533, 436528, 436529, 436532, 436535, 437984, 436536, 436526, 438722, 436531, 437998, 436525, 436534, 436524, 436530, 437980, 437907, 435661, 435662, 436527, 437150]
@@ -15,8 +11,6 @@ function Images() {
     const urls = objectIds.map(id => `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
 
     // useEffect(() => { //initial API call that loads the collection of object IDs
-
-
     //     //  fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}')
     //     //     .then(response => response.json())
     //     //     .then(response => {
@@ -24,7 +18,6 @@ function Images() {
     //     //         console.log('response.objectIDs', response.objectIDs);
     //     //         updateState(response.objectIDs)
     //     //     })
-
 
     //     // arrayOfObjects = objectIds.map((id) => {
     //     //     await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
@@ -43,16 +36,16 @@ function Images() {
         });
     }, [])
 
-let objRes = []
+
     const loadData = async (u) => {
-        
+        let tempArray = []
         await fetch(`${u}`)
         .then(response => response.json())
         .then(data => setObjArray([...objArray, data]))
     }
 
 
-    console.log('objArray', objArray)
+
     // https://collectionapi.metmuseum.org/public/collection/v1/objects/436173
 
     // async function fetchMoreData(e) {
@@ -87,7 +80,7 @@ let objRes = []
 
         <>
 
-            <Cards imageData={objArray} />
+            <Cards  imageData={objArray}/>
 
         </>
 

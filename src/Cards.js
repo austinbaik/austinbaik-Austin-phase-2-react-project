@@ -2,44 +2,52 @@ import React from "react";
 
 
 
-function Cards( { imageData }) {
+function Cards({ imageData }) {
 
-//we will be returning cards 
-        //each card has a favorite button (star)
-        //each card has a comment form 
-        //comment writes to db.json in "POST"
-        //
+    //we will be returning cards 
+    //each card has a favorite button (star)
+    //each card has a comment form 
+    //comment writes to db.json in "POST"
+    //
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
 
-console.log("objArray", imageData)
+        console.log("submitted! (for now)");
+    }
 
-const handleSubmit = () => {
-    
- console.log("submitted! (for now)");
-}
-
-    let testing = imageData.map((img) => {
+    let eachImage = imageData.map((img) => {
         return (
             <div key={img.objectID}>
-                {img.title}
-                <a href={img.primaryImage}></a> 
+                {img.title}<button id="favorite">⭐️</button>
+
+                <a href={img.primaryImage}>Picture</a>
+                <img
+                    src={img.primaryImage}
+                    alt={img.primaryImageSmall}
+                />
+                <br></br>
+
                 <form onSubmit={handleSubmit}>
-                    <button>Submit</button>
-                    <button id="favorite">⭐️</button>
+                    <label>
+                        Comment:
+                        <input type="text" name="name" />
+                    </label>
+                    <input type="submit" value="Submit" />
                 </form>
+
+
             </div>
         )
     });
 
     return (
-
-            <>
-                "Hold This Space"
-                {testing}
-
-            </>
-     
-
+        <>
+            "Hold This Space"
+            <div>
+                {eachImage}
+            </div>
+        </>
     )
 
 }
