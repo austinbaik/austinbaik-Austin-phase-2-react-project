@@ -25,6 +25,7 @@ const handleSubmit = () => {
                 <a href={img.primaryImage}></a> 
                 <form onSubmit={handleSubmit}>
                     <button>Submit</button>
+                    <button id="favorite">⭐️</button>
                 </form>
             </div>
         )
