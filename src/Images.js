@@ -6,9 +6,6 @@ import Cards from './Cards';
 function Images() {
     const [objArray, setObjArray] = useState([])
 
-    let objectIds = [436533, 436528, 436529, 436532, 436535, 437984, 436536, 436526, 438722, 436531, 437998, 436525, 436534, 436524, 436530, 437980, 437907, 435661, 435662, 436527, 437150]
-    // https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=11&hasImages=true&artistOrCulture=true&q=vincent
-    const urls = objectIds.map(id => `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
 
     // useEffect(() => { //initial API call that loads the collection of object IDs
     //     //  fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}')
@@ -30,19 +27,38 @@ function Images() {
 
 
     useEffect(() => {
+        console.log("in useEffect")
+
+        let objectIds = [436533, 436528, 436529, 436532, 436535, 437984, 436536, 436526, 438722, 436531, 437998, 436525, 436534, 436524, 436530, 437980, 437907, 435661, 435662, 436527, 437150]
+        // https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=11&hasImages=true&artistOrCulture=true&q=vincent
+            //api query for all Vincent van Gogh paintings with image from Met collection 
+        const urls = objectIds.map(id => `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+        let tempArray = []
+
         urls.forEach(u => {
             console.log("u", u)
-            loadData(u)
+            // loadData(u)
+            fetch(`${u}`)
+            .then(response => response.json())
+            .then(data => {
+                
+                tempArray=[...tempArray, data]
+            })
+            .then( () => setObjArray(tempArray))
+            
+            //component appears more than once in the page 
+            //something higher up the tree is unmounting and remounting 
+            //strict mode 
         });
     }, [])
 
 
-    const loadData = async (u) => {
-        let tempArray = []
-        await fetch(`${u}`)
-        .then(response => response.json())
-        .then(data => setObjArray([...objArray, data]))
-    }
+    // const loadData = async (u) => {
+    //     let tempArray = []
+    //     await fetch(`${u}`)
+    //     .then(response => response.json())
+    //     .then(data => setObjArray([...objArray, data]))
+    // }
 
 
 
