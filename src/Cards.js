@@ -1,5 +1,5 @@
 import React from "react";
-import './Cards.css';
+import './App.css';
 
 
 function Cards({ imageData }) {
@@ -18,11 +18,11 @@ function Cards({ imageData }) {
 
     let eachImage = imageData.map((img) => {
         return (
-            <div class="img" key={img.objectID}>
+            <div  class="img-div" key={img.objectID}>
                 <h1> {img.title} </h1> 
                 <h2> {img.artistDisplayName} </h2> 
 
-                <img
+                <img class="img" 
                     src={img.primaryImage}
                     alt={img.primaryImageSmall}
                 /><button id="favorite">⭐️</button>

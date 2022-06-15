@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import React from 'react';
 import Cards from './Cards';
+import './App.css';
 
 
 function Images() {
@@ -31,7 +32,7 @@ function Images() {
 
         let objectIds = [436533, 436528, 436529, 436532, 436535, 437984, 436536, 436526, 438722, 436531, 437998, 436525, 436534, 436524, 436530, 437980, 437907, 435661, 435662, 436527, 437150]
         // https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId=11&hasImages=true&artistOrCulture=true&q=vincent
-            //api query for all Vincent van Gogh paintings with image from Met collection 
+        //api query for all Vincent van Gogh paintings with image from Met collection 
         const urls = objectIds.map(id => `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
         let tempArray = []
 
@@ -39,13 +40,17 @@ function Images() {
             console.log("u", u)
             // loadData(u)
             fetch(`${u}`)
-            .then(response => response.json())
-            .then(data => {
+                .then(response => response.json())
+                .then(data => {
+
+                    tempArray = [...tempArray, data]
+                })
+                .then(() => setObjArray(tempArray))
+            fetch('http://localhost:3000/images', {
+                method: 'POST', // or 'PUT'
                 
-                tempArray=[...tempArray, data]
-            })
-            .then( () => setObjArray(tempArray))
-            
+                
+
             //component appears more than once in the page 
             //something higher up the tree is unmounting and remounting 
             //strict mode 
@@ -94,11 +99,11 @@ function Images() {
 
     return (
 
-        <>
+        <div >
 
-            <Cards  imageData={objArray}/>
+            <Cards imageData={objArray} />
 
-        </>
+        </div>
 
     )
 };
