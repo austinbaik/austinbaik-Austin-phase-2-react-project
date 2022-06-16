@@ -16,6 +16,9 @@ function Cards({ imageData }) {
         console.log("submitted! (for now)");
     }
 
+
+    //controlled form must be used! 
+
     let eachImage = imageData.map((img) => {
         return (
             <div  class="img-div" key={img.objectID}>
@@ -25,7 +28,8 @@ function Cards({ imageData }) {
                 <img class="img" 
                     src={img.primaryImage}
                     alt={img.primaryImageSmall}
-                /><button id="favorite">⭐️</button>
+                />
+                
                 <br></br>
 
                 <form onSubmit={handleSubmit}>

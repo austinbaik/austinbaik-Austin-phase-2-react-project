@@ -1,6 +1,6 @@
 import React from "react";
 
-//renders favorited images (and comments) as cards 
+//renders the image cards with comments  
 //will need to read from state 
 
 function Favorites(){
