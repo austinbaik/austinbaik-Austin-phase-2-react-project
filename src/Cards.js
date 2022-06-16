@@ -1,43 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import './App.css';
 
 
 function Cards({ imageData }) {
 
-    //we will be returning cards 
-    //each card has a favorite button (star)
-    //each card has a comment form 
-    //comment writes to db.json in "POST"
-    //
+    const [name, setName] = useState("")
+    const [comment, setComment] = useState("")
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        fetch("http://localhost:3000/images?id=7", {
 
-        console.log("submitted! (for now)");
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name, 
+                comment: comment
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
     }
 
 
-    //controlled form must be used! 
+
+    function handleNameChange(e) {
+        setName(e.target.value)
+    }
+    function handleCommentChange(e) {
+        setComment(e.target.value)
+    }
 
     let eachImage = imageData.map((img) => {
         return (
-            <div  class="img-div" key={img.objectID}>
-                <h1> {img.title} </h1> 
-                <h2> {img.artistDisplayName} </h2> 
+            <div class="img-div" key={img.objectID}>
+                <h1> {img.title} </h1>
+                <h2> {img.artistDisplayName} </h2>
 
-                <img class="img" 
+                <img class="img"
                     src={img.primaryImage}
                     alt={img.primaryImageSmall}
                 />
-                
+
                 <br></br>
 
                 <form onSubmit={handleSubmit}>
                     <label>
                         Comment:
-                        <input type="text" name="name" />
+                        <input type="text" onChange={handleNameChange} value={name} />
                     </label>
-                    <input type="submit" value="Submit" />
+                        Name:
+                    <input type="text" onChange={handleCommentChange} value={comment} />
+                    <button type="submit">Submit</button>
                 </form>
 
 

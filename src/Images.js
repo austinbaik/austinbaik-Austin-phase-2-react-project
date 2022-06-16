@@ -46,16 +46,12 @@ function Images() {
                     tempArray = [...tempArray, data]
                 })
                 .then(() => setObjArray(tempArray))
-            fetch('http://localhost:3000/images', {
-                method: 'POST', // or 'PUT'
-                
-                
+            
 
             //component appears more than once in the page 
             //something higher up the tree is unmounting and remounting 
             //strict mode 
-        });
-    }, [])
+    })}, [])
 
 
     // const loadData = async (u) => {
@@ -107,6 +103,7 @@ function Images() {
 
     )
 };
+
 
 
 export default Images;

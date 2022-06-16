@@ -1,6 +1,6 @@
 import React from "react";
 
-//renders the image cards with comments  
+//renders the image cards with comments from db.json
 //will need to read from state 
 
 function Favorites(){
