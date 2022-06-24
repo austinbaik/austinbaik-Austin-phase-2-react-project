@@ -13,9 +13,14 @@
       "imgUrl": "https://images.metmuseum.org/CRDImages/ep/original/DT1502_cropped2.jpg",
       "imgName": "Self-Portrait with a Straw Hat (obverse: The Potato Peeler)",
       "id": 2,
-      "comments": [{
-        "comment": "Ginger Nut"
-      }]
+      "comments": [
+        {
+          "comment": "Ginger Nut"
+        }
+      ]
+    },
+    {
+      "id": 3
     }
   ]
 }
