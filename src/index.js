@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import { HashRouter } from 'react-router-dom';
 //provider - React Context API
+//BrowserRouter 
 
 import './index.css';
 import App from './App';
