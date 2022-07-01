@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-nav {
+.nav {
   font: 'Helvetica Neue';
   font-size: calc(10px + 2vmin);
   color: white;
@@ -24,4 +24,9 @@ nav {
   width: 50%;
   border: 3px solid green;
   padding: 10px;
+}
+
+
+.navBarLink {
+  margin: 5px;
 }

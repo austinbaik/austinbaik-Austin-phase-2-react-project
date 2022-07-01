@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import './index.css';
+import './App.css'
 
 function Card({ imgObj }) {
     console.log("img", imgObj)
@@ -46,9 +47,12 @@ function Card({ imgObj }) {
 
     return (
 
-        <div class="img-div" key={imgObj.objectID}>
+        <div class=".images-holder" key={imgObj.objectID}>
             <h1> {imgObj.title} </h1>
             <h2> {imgObj.artistDisplayName} </h2>
+            <div>
+                {imgObj.objectID}
+            </div>
 
             <img class="img"
                 src={imgObj.primaryImage}

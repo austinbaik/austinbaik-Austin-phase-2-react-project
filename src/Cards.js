@@ -4,13 +4,9 @@ import Card from './Card';
 
 function Cards({ imageData }) {
 
-
-
-
     return (
         <>
-            "Hold This Space"
-            <div>
+            <div className="images-holder">
           {  imageData.map((img) => {
         return (
 

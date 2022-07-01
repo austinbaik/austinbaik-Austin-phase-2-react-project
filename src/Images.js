@@ -95,7 +95,7 @@ function Images() {
 
     return (
 
-        <div >
+        <div className="body">
 
             <Cards imageData={objArray} />
 

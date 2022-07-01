@@ -1,20 +1,24 @@
-import React from 'react';
+// import React from 'react';
 import './index.css'
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-function Nav({ onChangePage }) {
+function Nav() {
+ 
+    return(
+    <div className='nav'>
+      <Link className="navBarLink" to="/">Home</Link>
+
+      <Link className="navBarLink" to="/images">Images</Link>
     
-    function handleLinkClick(e) {
-        e.preventDefault()
-        onChangePage(e.target.pathname)
-    }
-    
-    return (
-        <nav>
-            <a onClick={handleLinkClick} href="/images">Images</a>
-            <a onClick={handleLinkClick} href="/favorites">Favorites</a>
-            {/* <a onClick={handleLinkClick} href="/projects">Projects</a> */}
-        </nav>
-    );
+      <Link className="navBarLink" to="/favorites">Favorites</Link>
+  </div>
+    )
 }
 
 export default Nav;
