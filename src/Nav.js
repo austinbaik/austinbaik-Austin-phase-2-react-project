@@ -12,11 +12,11 @@ function Nav() {
  
     return(
     <div className='nav'>
-      <Link className="navBarLink" to="/">Home</Link>
+      <Link className="navBarLink" to="/">HOME</Link>
 
-      <Link className="navBarLink" to="/images">Images</Link>
+      <Link className="navBarLink" to="/images">IMAGES</Link>
     
-      <Link className="navBarLink" to="/favorites">Favorites</Link>
+      <Link className="navBarLink" to="/favorites">FAVORITES</Link>
   </div>
     )
 }
