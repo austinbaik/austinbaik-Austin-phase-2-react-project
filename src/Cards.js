@@ -6,7 +6,7 @@ function Cards({ imageData }) {
 
     return (
         <>
-            <div className="images-holder">
+            <div >
           {  imageData.map((img) => {
         return (
 

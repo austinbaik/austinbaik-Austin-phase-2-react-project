@@ -4,7 +4,7 @@ import { HashRouter } from 'react-router-dom';
 //provider - React Context API
 //BrowserRouter 
 
-import './index.css';
+import './App.css';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
