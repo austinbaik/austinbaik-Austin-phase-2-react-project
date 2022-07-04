@@ -58,10 +58,10 @@ function Card({ imgObj }) {
 
             <form onSubmit={handleSubmit}>
                 <label>
-                    Comment:
+                    Name:
                     <input type="text" onChange={handleNameChange} value={name} />
                 </label>
-                Name:
+                Comment:
                 <input type="text" onChange={handleCommentChange} value={comment} />
                 <button type="submit">Submit</button>
             </form>

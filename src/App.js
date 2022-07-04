@@ -1,12 +1,8 @@
-// import { Switch, Route } from "react-router-dom"
-// import { useState } from 'react';
 import './App.css';
 import Nav from './Nav.js';
 import Home from './Home';
 import Images from './Images.js';
 import Favorites from './Favorites';
-
-
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -39,46 +35,3 @@ export default function App() {
     </Router>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function App() {
-  
-  
-  
-  
-  
-  //   const [page, setPage] = useState("/")
-
-
-//   return (
-//     <div >
-//       <Nav onChangePage={setPage}/>
-//       <Switch>
-//         <Route exact path="/">
-//           <Home />
-//         </Route>
-//         <Route path="/images">
-//           <Images />
-//         </Route>
-//         <Route path="/favorites">
-//           <Favorites />
-//         </Route>
-//       </Switch>
-//     </div>
-//   );
-// }
-
-// export default App;

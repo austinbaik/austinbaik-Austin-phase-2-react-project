@@ -1,26 +1,12 @@
 {
   "images": [
     {
-      "name": "ghearg",
-      "comment": "fghsdfghdfgh",
+      "name": "Austin ",
+      "comment": "I love this painting!",
       "imgUrl": "https://images.metmuseum.org/CRDImages/ep/original/DT1502_cropped2.jpg",
       "imgName": "Self-Portrait with a Straw Hat (obverse: The Potato Peeler)",
+      "objID": 436532,
       "id": 1
-    },
-    {
-      "name": "asdf",
-      "comment": "asdfaasaa",
-      "imgUrl": "https://images.metmuseum.org/CRDImages/ep/original/DT1502_cropped2.jpg",
-      "imgName": "Self-Portrait with a Straw Hat (obverse: The Potato Peeler)",
-      "id": 2,
-      "comments": [
-        {
-          "comment": "Ginger Nut"
-        }
-      ]
-    },
-    {
-      "id": 3
     }
   ]
 }

@@ -14,7 +14,7 @@ function Nav() {
     <div className='nav'>
       <Link className="navBarLink" to="/">HOME</Link>
 
-      <Link className="navBarLink" to="/images">IMAGES</Link>
+      <Link className="navBarLink" to="/images">PAINTINGS</Link>
     
       <Link className="navBarLink" to="/favorites">FAVORITES</Link>
   </div>

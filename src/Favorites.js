@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './App.css';
 
 //renders the image cards with comments from db.json
 //will need to read from state 
@@ -28,9 +29,10 @@ function Favorites() {
 
     let eachComment = allCommentedImages.map(commentObj => {
         return (
-            <div key={commentObj.id}>
-                <img src={commentObj.imgUrl} />
+            <div  className="images-holder" key={commentObj.id}>
+                <img class="img" src={commentObj.imgUrl} />
                 <div>{commentObj.comment}</div>
+                <div>-{commentObj.name}</div>
             </div>
         )
 
@@ -39,7 +41,7 @@ function Favorites() {
 
 
     return (
-        <div> {eachComment} </div>
+        <div > {eachComment} </div>
     )
 }
 
