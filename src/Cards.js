@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './App.css';
 import Card from './Card';
 
-function Cards({ imageData }) {
+function Cards({ imageData }) { 
 
     return (
         <>
@@ -26,7 +26,7 @@ export default Cards;
 
 
 
-    // DATASTRUCTURE:
+    // EXAMPLE DATASTRUCTURE OF IMAGE OBJECT:
     // {
     //     "objectID": 436173,
     //     "isHighlight": true,

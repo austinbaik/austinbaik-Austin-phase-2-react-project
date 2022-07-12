@@ -7,27 +7,7 @@ import './App.css';
 function Images() {
     const [objArray, setObjArray] = useState([])
 
-
-    // useEffect(() => { //initial API call that loads the collection of object IDs
-    //     //  fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}')
-    //     //     .then(response => response.json())
-    //     //     .then(response => {
-    //     //         console.log('response', response)
-    //     //         console.log('response.objectIDs', response.objectIDs);
-    //     //         updateState(response.objectIDs)
-    //     //     })
-
-    //     // arrayOfObjects = objectIds.map((id) => {
-    //     //     await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-    //     // })
-    //     // .then(resp => response.json)
-
-
-    // }, []
-    // )
-
-
-    useEffect(() => {
+    useEffect(() => {  //initial API call that loads the collection of object IDs
         console.log("in useEffect")
 
         let objectIds = [436533, 436528, 436529, 436532, 436535, 437984, 436536, 436526, 438722, 436531, 437998, 436525, 436534, 436524, 436530, 437980, 436527, ]
@@ -45,7 +25,7 @@ function Images() {
 
                     tempArray = [...tempArray, data]
                 })
-                .then(() => setObjArray(tempArray))
+                .then(() => setObjArray(tempArray)) // API response delivers the painting object from the Met's API and then set to State image object 
             
 
             //component appears more than once in the page 
@@ -94,11 +74,11 @@ function Images() {
 
 
     return (
-
+        //array of image objects is sent down as a prop to Cards component 
         <div className="body">
 
-            <Cards imageData={objArray} />
-
+            <Cards imageData={objArray} /> 
+            
         </div>
 
     )

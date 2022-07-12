@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 
 
+//Home page component for the application. 
+//Users navigating to this application are directed to this landing page 
+
 function Home() {
 
     return (
@@ -11,10 +14,7 @@ function Home() {
             <div>
                 This site displays the Metropolitan Museum of Art's collection of Vincent van Gogh's artwork. 
 
-                Special thanks to the Met's open access API
-
-                
-                 
+                Special thanks to the Met's open access API                
             </div>
         </div>
     )
