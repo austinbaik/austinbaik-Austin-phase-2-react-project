@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 
-//renders the image cards with comments from db.json
-//will need to read from state 
+//This component renders the image cards with comments from db.json
 
 function Favorites() {
 
     const [allCommentedImages, setAllCommentedImages] = useState([])
 
-    useEffect(() => {
+    useEffect(() => { //when component initializes, useEffect sends a Fetch request to db.json 
+                        //returned objects contain image info and user comment 
+                        //sets State with the array of objects 
         console.log("favorites page fires")
 
         let dbJSONObj = []
@@ -19,15 +20,10 @@ function Favorites() {
                 dbJSONObj = data
             })
             .then(() => setAllCommentedImages(dbJSONObj))
-
-
-        //component appears more than once in the page 
-        //something higher up the tree is unmounting and remounting 
-        //strict mode 
     }, [])
 
 
-    let eachComment = allCommentedImages.map(commentObj => {
+    let eachComment = allCommentedImages.map(commentObj => { //.map method is called to build the individual image and comment objects for page render
         return (
             <div  className="images-holder" key={commentObj.id}>
                 <img class="img" src={commentObj.imgUrl} />
