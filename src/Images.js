@@ -34,6 +34,8 @@ function Images() {
     })}, [])
 
 
+    // This code left commented out for reference to future application roadmap utilizing infinite scroll
+    
     // const loadData = async (u) => {
     //     let tempArray = []
     //     await fetch(`${u}`)
@@ -68,7 +70,6 @@ function Images() {
     //     //.push is destructive && must use spread array both times for objects inside to be one array
     //     setHasMore(arrayLength - (newRemainingIDS + 9) > 0) //gives true or false by default 
     // }
-
     // newRemainingIDS < arrayLength ? setHasMore(true) : setHasMore(false)
     // setRemainingImageIDs(newRemainingIDS)
 
@@ -83,7 +84,6 @@ function Images() {
 
     )
 };
-
 
 
 export default Images;
