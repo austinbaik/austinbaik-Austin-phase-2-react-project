@@ -5,6 +5,12 @@ import './App.css';
 
 function Favorites() {
 
+
+// set list arrray of img obj IDs (from the Met) 
+// take that array and map over and filter through the comment obj array for a match
+// if there is a match, render all the matching comments below? 
+
+
     const [allCommentedImages, setAllCommentedImages] = useState([])
 
     useEffect(() => { //when component initializes, useEffect sends a Fetch request to db.json 

@@ -6,7 +6,7 @@ function Card({ imgObj }) {
 
     const [name, setName] = useState("")
     const [comment, setComment] = useState("")
-    const [imgURL, setImgURL] = useState(imgObj.primaryImage)
+    const [imgURL, setImgURL] = useState(imgObj.primaryImage) //deprecate 
     const [imgName, setImgName] = useState(imgObj.title)
     const [objID, setObjID] = useState(imgObj.objectID)
 
@@ -21,7 +21,7 @@ function Card({ imgObj }) {
             body: JSON.stringify({
                 name: name,
                 comment: comment,
-                imgUrl: imgURL,
+                imgUrl: imgURL, // update 
                 imgName: imgName,
                 objID: objID, 
 
